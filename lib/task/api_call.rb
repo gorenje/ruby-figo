@@ -24,14 +24,15 @@ module Figo
     end
     options["continue"] ||= 0
 
-    query_api_object TaskState, "/task/progress?id=" + task.task_token, options.to_query, "POST", nil
+    query_api_object TaskState, "/task/progress?id=" + task.task_token, options, "POST", nil
   end
 
   # Cancel a task.
   #
   # @param task_token [Object] Task token object
-  def cancel_task(task_token)
-    options["id"] = task_token["task_token"]
-    query_api_object TaskToken, "/task/cancel?id=" + task_token["task_token"], options.to_query, "POST", nil
+  def cancel_task(task, options = nil)
+    options ||= {}
+    options["id"] = task.task_token
+    query_api_object TaskToken, "/task/cancel?id=" + task.task_token, options, "POST", nil
   end
 end
