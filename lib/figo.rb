@@ -168,5 +168,9 @@ module Figo
       return type.new(self, response) if array_name.nil?
       return response[array_name].map {|entry| type.new(self, entry)}
     end
+
+    def version
+      query_api "/version"
+    end
   end
 end
