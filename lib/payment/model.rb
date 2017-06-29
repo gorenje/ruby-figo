@@ -2,7 +2,7 @@ require_relative "../base.rb"
 module Figo
 # Object representing a Payment
   class Payment < Base
-    @dump_attributes = [:type, :name, :account_number, :bank_code, :amount, :currency, :purpose]
+    @dump_attributes = [:type, :name, :account_number, :bank_code, :amount, :currency, :purpose, :iban]
 
     def initialize(session, json)
       super(session, json)
@@ -27,6 +27,8 @@ module Figo
     # Account number of creditor or debtor
     # @return [String]
     attr_accessor :account_number
+
+    attr_accessor :iban
 
     # Bank code of creditor or debtor
     # @return [String]
